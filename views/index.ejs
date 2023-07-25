@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <!-- change list and task creation -->
+    <section class="creation-container">
+        <button type="button">current list</button>
+        <a href="/worklist"><button type="button" >work list</button></a>
+        <div class="task-container">
+            <form action="/create" method="post">
+                <input type="text" name="task" id="">
+                <input type="submit" value="create">
+            </form>
+        </div>
+    </section>
+    <!-- task viewing -->
+    <section class="task-view">
+        <div class="task-card">
+            <p class="task-content"></p>
+        </div>
+        <% for (let index = 0; index < List.length; index++) { %>
+            <div class="task-card">
+                <input type="checkbox" name="" id="" onclick="clicked('a<%= index %>')  ">
+                <label id="a<%= index %>" for="0"  ><%= List[index] %></label>
+               
+            </div>
+            
+       <% } %>
+    </section>
+
+    <script>
+        function clicked(params) {
+            let content=document.querySelector("#"+params);
+           let text= document.querySelector("#"+params).textContent;
+           console.log(content.getAttribute("for"));
+           if (content.getAttribute("for") === "0") {
+                 document.querySelector("#"+params).innerHTML=`<del>${text}</del>`;
+                 content.attributes[1].value="1";
+                 
+           } else {
+            document.querySelector("#"+params).innerHTML=`${text}`;
+            content.attributes[1].value="0";
+           }
+           
+           
+        }
+        
+    </script>
+</body>
+</html>
